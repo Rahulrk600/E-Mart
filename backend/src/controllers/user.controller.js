@@ -346,7 +346,7 @@ const  forgetPassword = asyncHandler(async(req, res, next)=>{
 
     await user.save({validateBeforeSave: false})
 
-    const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`;
+    const resetPasswordUrl = `${req.protocol}://${req.get("host")}/api/v1/users/password/reset/${resetToken}`;
     //const resetPasswordUrl = `http://localhost/api/v1/password/reset/${resetToken}`
 
     const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\n if you have not requested this email then , please ignore it`;
@@ -373,33 +373,39 @@ const  forgetPassword = asyncHandler(async(req, res, next)=>{
 
 //reset password
 
-// exports.resetPassword = catchAsyncError(async(req,res,next)=>{
+const resetPassword = asyncHandler(async(req,res,next)=>{
+    const {token} = req.params;
    
-//     //creating token has
-//     const resetPasswordToken = crypto
-//     .createHash("sha256")
-//     .update(req.params.token)
-//     .digest("hex");
+    //creating token has
+    const resetPasswordToken = crypto
+    .createHash("sha256")
+    .update(token)
+    .digest("hex");
 
-//     const user = await User.findOne({
-//         resetPasswordToken,
-//         resetPasswordExpire: {$gt: Date.now()},
-//     })
+    const user = await User.findOne({
+        resetPasswordToken,
+        resetPasswordExpires: {$gt: Date.now()},
+    })
 
-//     if(!user ){
-//         return next(new ErrorHandlar("Reset password token is invaild or been expired",400))
-//     }
-//     if(req.body.password !== req.body.confirempassword){
-//         return next(new ErrorHandlar("password does not match",400))
-//     }
+    if(!user ){
+        return next(new ApiError(400,"Reset password token is invaild or been expired"))
+    }
 
-//     user.password = req.body.password;
-//     user.resetPasswordToken=undefined;
-//     user.resetPasswordExpire=undefined;
+    const {password, confirempassword} = req.body;
 
-//      await user.save();
-//      sendToken(user,200,res);
-// });
+    if(password !== confirempassword){
+        return next(new ApiError(400,"password does not match"))
+    }
+
+    user.password = password;
+    user.resetPasswordToken=undefined;
+    user.resetPasswordExpires=undefined;
+
+     await user.save();
+     return res
+     .status(200)
+     .json(new ApiResponse(200,"password reset successful"))
+});
 
 
 export {
@@ -415,5 +421,6 @@ export {
     updateUserRole,
     updateAvatar,
     deleteUser,
-    forgetPassword
+    forgetPassword,
+    resetPassword,
 }   

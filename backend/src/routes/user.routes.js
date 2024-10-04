@@ -4,6 +4,8 @@ import {
     registerUser,
     loginUser,
     logOutUser,
+    forgetPassword,
+    resetPassword,
     refreshAccesstoken,
     changeCurrentPassword,
     getCuerrentUser,
@@ -30,6 +32,8 @@ router.route("/register").post(
 router.route("/login").post(loginUser)
 //secured route
 router.route("/logout").post(verifyJWT,logOutUser)
+router.route("/password/forgot").post(forgetPassword)
+router.route("/password/reset/:token").put(resetPassword)
 router.route("/refresh-token").post(refreshAccesstoken)
 router.route("/change-password").post(verifyJWT,changeCurrentPassword)
 router.route("/current-user").get(verifyJWT,getCuerrentUser)

@@ -56,6 +56,36 @@ export const logoutUser = createAsyncThunk(
   }
 )
 
+// forgot password
+export const forgotPassword = createAsyncThunk(
+  'auth/forgotPassword',
+  async (email, thunAPI) => {
+    try {
+      //console.log("user", email);
+      const response = await axios.post(`${localhost_api}/api/v1/users/password/forgot`,{email})
+      //console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return thunAPI.rejectWithValue(error.response.data.message)
+    }
+  }
+)
+
+//reset Pssword
+export const resetPassword = createAsyncThunk(
+  'auth/resetPassword',
+  async ({token, data}, thunAPI) => {
+    try {
+      //console.log("user", token);
+      const response = await axios.put(`${localhost_api}/api/v1/users/password/reset/${token}`,{data})
+      //console.log(response.data);
+      return response.data;
+    } catch (error) {
+      return thunAPI.rejectWithValue(error.response.data.message)
+    }
+  }
+)
+
 //refreshToken
 export const refreshToken = createAsyncThunk(
   'auth/refreshToken',
@@ -316,6 +346,32 @@ const authSlice = createSlice({
     .addCase(deleteUser.rejected,(state, action)=>{
       state.loading = false;
       state.error = action.payload;
+    })
+    //forgot password
+    .addCase(forgotPassword.pending,(state)=>{
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase(forgotPassword.fulfilled,(state,action)=>{
+      state.loading= false;
+      state.user = action.payload
+    })
+    .addCase(forgotPassword.rejected,(state, action)=>{
+      state.loading = false;
+      state.error = action.payload
+    })
+    // reset password
+    .addCase(resetPassword.pending,(state)=>{
+      state.loading =true;
+      state.error = null;
+    })
+    .addCase(resetPassword.fulfilled,(state,action)=>{
+      state.loading = false;
+      state.user = action.payload;
+    })
+    .addCase(resetPassword.rejected,(state,action)=>{
+      state.loading = false;
+      state.error = action.payload
     })
   }
 
