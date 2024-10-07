@@ -11,7 +11,7 @@ const connectDB = async ()=>{
     process.exit(1);
   }
 }
-export{connectDB}
-
+export{connectDB}  
+ 
 //"mongodb://127.0.0.1:27017"
-// mongodb+srv://rahulbca600:rahul77799@cluster0.2e33ssn.mongodb.net
+
