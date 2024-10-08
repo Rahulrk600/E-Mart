@@ -8,7 +8,7 @@ import { isValidObjectId } from "mongoose"
 //create order
 const createOrder = asyncHandler(async(req, res)=>{
     const {shippingInfo, orderItems, paymantInfo, itemsPrice, packagingFee, deliveryCharges,discount, totalPrice} = req.body
-     
+      
 
     // if(!shippingInfo || !orderItems || !paymantInfo || !itemsPrice || !packagingFee || !discount || !totalPrice ,!deliveryCharges ){
     //      throw new ApiError(401, "all files are requied ")

@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
+import { localhost_api } from '../Store/api_local.js'
 import { CategoryList, SlidingImage, Horizontal_card, Verticaly_card } from '../components/index.js'
 import axios from 'axios'
 
@@ -13,7 +14,7 @@ function Home() {
     const fetchData = async () => {
       setLoading(true)
       try {
-        const { data } = await axios.get("http://localhost:8000/api/v1/products/all/products")
+        const { data } = await axios.get(`${localhost_api}/api/v1/products/all/products`)
         setData(data.data)
       } catch (error) {
         setError(error)
@@ -40,6 +41,7 @@ function Home() {
             }
           </div>
         </div>
+        <Horizontal_card category={"camera"} heading={"4K FULL HD Camera"} />
       </div>
 
     </>

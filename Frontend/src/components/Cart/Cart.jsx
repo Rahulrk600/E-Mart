@@ -1,5 +1,5 @@
 import React from 'react'
-import { MdOutlineRemove } from 'react-icons/md'
+import { MdOutlineRemoveShoppingCart } from 'react-icons/md'
 import CartItems from './CartItems'
 import {  useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -19,9 +19,9 @@ function Cart() {
         <>
             {
                 cartItems.length === 0 ?
-                    <div>
-                        <MdOutlineRemove />
-                        <h1>No Product i your Cart</h1>
+                    <div className='flex justify-center items-center text-red-500 p-4 mt-10'>
+                        <MdOutlineRemoveShoppingCart className='h-8 w-8' />
+                        <h1 className='text-xl font-bold'>No Product In Your Cart</h1>
                     </div>
                     : (
                         <div className=' container mx-auto w-full max-h-screen p-6'>
