@@ -101,8 +101,8 @@ function AllProducts() {
     }, [dispatch, price, ratings, category])
 
     return (
-        <div className={`min-h-screen ${theme === 'dark' ? 'bg-black text-white' : ''}  sm:p-4`}>
-            <div className=' container mx-auto sm:px-4 flex flex-col sm:flex-row sm:gap-3'>
+        <div className={`min-h-screen ${theme === 'dark' ? 'bg-black text-white' : ''} sm:p-4`}>
+            <div className=' container mx-auto  flex flex-col sm:flex-row sm:gap-3'>
                 {/** Filter */}
                 <div className='flex justify-between items-center p-3 text-black bg-gray-100 rounded-lg shadow-md sm:hidden'>
                     <div className=' relative ml-3  cursor-pointer' onClick={openPopup}>
@@ -115,6 +115,7 @@ function AllProducts() {
                         <p className='ml-2 font-medium'>Filter</p>
                     </div>
                 </div>
+                { isOpen &&(
                 <div className={`sm:hidden mt-2 ${theme === 'dark' ? 'bg-black text-white' : ''} rounded-r-lg shadow-md`}>
                     <div className='grid grid-cols-2 grid-rows-2 gap-2 max-h-[calc(100vh-120px)]'>
 
@@ -125,7 +126,10 @@ function AllProducts() {
                         }
                     </div>
                 </div>
-                <div className={`sm:hidden mt-2 ${theme === 'dark' ? 'bg-black text-white' : ''} rounded-r-lg shadow-md`}>
+                )}
+               {
+                isOpen &&(
+                    <div className={`sm:hidden mt-2 ${theme === 'dark' ? 'bg-black text-white' : ''} rounded-r-lg shadow-md`}>
                     <div className='grid grid-cols-2 grid-rows-2 gap-2 max-h-[calc(100vh-120px)]'>
 
                         {
@@ -135,6 +139,8 @@ function AllProducts() {
                         }
                     </div>
                 </div>
+                )
+               }
                 <aside className={` hidden sm:block w-1/4 p-4 ${theme === 'dark' ? 'bg-gray-600 text-white' : 'bg-slate-100'}  rounded-lg shadow-md overflow-y-scroll`}>
                     <h2 className=' text-sm  font-medium mb-2 border-b border-gray-500 py-2'>Filters({filterProductCount})</h2>
 
@@ -211,7 +217,7 @@ function AllProducts() {
 
 
                 <div className={`sm:w-3/4 mt-2 sm:mt-0 ${theme === 'dark' ? 'bg-black text-white' : ''} rounded-r-lg shadow-md`}>
-                    <h2 className='text-xl font-medium mb-4 my-3 p-2 ml-6 border-b '>Products</h2>
+                    <h2 className='text-xl font-medium mb-4 my-3 p-2 sm:ml-6 border-b '>Products</h2>
                     <div className='grid grid-cols-2 grid-rows-2 sm:grid-cols-4 gap-2 sm:mx-6 max-h-[calc(100vh-120px)]'>
 
                         {
