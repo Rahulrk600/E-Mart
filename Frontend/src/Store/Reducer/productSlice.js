@@ -22,7 +22,7 @@ export const categoryProduct = createAsyncThunk(
   async(category,thankAPI)=>{
     try {
       const response = await axios.post(`${localhost_api}/api/v1/products/get/products/by/category`,{category});
-      console.log("mmm,",response.data);
+     // console.log("mmm,",response.data);
       
         return response.data
     } catch (error) {
@@ -36,7 +36,7 @@ export const categoryProduct = createAsyncThunk(
 export const createProducts = createAsyncThunk(
   'products/createProducts',
   async(data,thankAPI)=>{
-    console.log("data",data);
+    //console.log("data",data);
     
     try {
       const config = { headers: { "Content-Type": "multipart/form-data" }, withCredentials: true, };
@@ -58,7 +58,7 @@ export const getProducts = createAsyncThunk(
      
      if(category) {
        link = `${localhost_api}/api/v1/products/all/products?price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
-       console.log("lonk",link);
+      // console.log("lonk",link);
     }
     try {
       const response = await axios.get(link)
@@ -94,7 +94,7 @@ export const search = createAsyncThunk(
     try {
       const config = { withCredentials: true };
       const response = await axios.get(`${localhost_api}/api/v1/products/search${query}`,config);
-      console.log("qur2", response.data);
+     // console.log("qur2", response.data);
       
         return response.data.data
     } catch (error) {
@@ -130,7 +130,7 @@ export const updateProduct = createAsyncThunk(
     try {
       const config = {  withCredentials: true };
       const response = await axios.patch(`${localhost_api}/api/v1/products/B/admin/product/${id}`,productData,config)
-         console.log(response.data);
+        // console.log(response.data);
          
         return response.data
     } catch (error) {

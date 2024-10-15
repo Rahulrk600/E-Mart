@@ -6,7 +6,7 @@ function Sidebar() {
   return (
     
         <aside  className='bg-blue-300 min-h-full w-full max-w-64 shadow-md'>
-              <h1 className='text-center mt-0 w-full bg-white p-4 font-bold '>ADMIN DASHBORD</h1>
+              <h1 className='text-center mt-0 w-full bg-green-400 p-4 font-bold '>ADMIN DASHBORD</h1>
             <div className='flex flex-col justify-center items-center shadow-md p-3 mt-8'>
               <div className='bg-gray-100 w-full shadow-md rounded-md text-black text-sm  '>
               <h2 className='ml-4 text-[16px] font-[400] p-1 '>Product</h2>

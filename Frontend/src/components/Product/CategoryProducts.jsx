@@ -11,7 +11,8 @@ function CategoryProducts() {
   const dispatch = useDispatch()
   const category = params?.categoryName
   const { categoryProducts, loading } = useSelector((state) => state.products)
-  console.log("ct", categoryProducts);
+  const { theme} = useSelector((state) => state.theme)
+  //console.log("ct", categoryProducts);
 
   useEffect(() => {
     dispatch(categoryProduct(category))
@@ -19,7 +20,7 @@ function CategoryProducts() {
 
   return (
     <div className=' container mx-auto p-4'>
-      <div className=' sm:w-3/4 mx-auto bg-gray-100 rounded-lg shadow-md'>
+      <div className={` sm:w-3/4 mx-auto bg-gray-100  ${theme === 'dark' ? 'bg-gray-400':''} text-black rounded-lg shadow-md`}>
         <h2 className='text-xl font-medium mb-4 my-3 p-2 ml-6 border-b  '>{`All ${params?.categoryName}s`}</h2>
         <div className='grid grid-cols-2 grid-rows-2 sm:grid-cols-4 gap-3 sm:mx-6'>
 

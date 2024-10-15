@@ -15,6 +15,7 @@ function SignUp() {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const [showPassword, setShowPassword] = useState("")
   const { error } = useSelector((state) => state.auth)
+  const { theme } = useSelector((state) => state.theme)
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
@@ -44,8 +45,8 @@ function SignUp() {
   }
 
   return (
-    <div className='flex justify-center items-center max-h-screen  bg-slate-200 sm:mt-10 '>
-      <div className='w-full max-w-md h-fit bg-white p-8 space-y-2  rounded-lg shadow-md sm:w-2/6 '>
+    <div className={`flex justify-center items-center max-h-screen  ${theme === 'dark' ? 'bg-gray-900 text-white':'bg-slate-100'} sm:mt-10 `}>
+      <div className='w-full max-w-md h-fit bg-white text-black p-8 space-y-2  rounded-lg shadow-md sm:w-2/6 '>
         <h2 className='text-2xl text-center font-bold text-gray-700 mb-6'>Sign Up to your account</h2>
         <form className='space-y-2' onSubmit={handleSubmit(registered)}>
 

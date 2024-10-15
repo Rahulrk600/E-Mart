@@ -1,8 +1,10 @@
 import React from 'react'
 import ReactStars from 'react-stars'
-
+import { useSelector } from 'react-redux';
 
 function ReviewCard({reveiw}) {
+  
+    const {theme} = useSelector((state)=> state.theme)
     const options = {
     edit: false,
     color: "rgba(20,20,20.0.1)",
@@ -14,7 +16,7 @@ function ReviewCard({reveiw}) {
     
 
     return (
-        <div className='bg-white p-6 rounded-lg shadow-md max-w-xs mx-auto mb-4'>
+        <div className={`${theme === 'dark' ? 'bg-gray-600 text-white':'bg-slate-100'} p-6 rounded-lg shadow-md max-w-xs mx-auto mb-4`}>
             <div className='flex items-center justify-between mb-4'>
                     <div className=' flex flex-col'>
                         <img

@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { Input, Button } from '../index.js'
 import { useForm } from 'react-hook-form'
 import { FaLock, FaEye, FaEyeSlash } from 'react-icons/fa'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import { updateCurrentPassword } from '../../Store/Reducer/UserReducers/authSlice.js'
 import { toast } from 'react-toastify'
 
 function UpdatePassword() {
 
     const dispatch = useDispatch();
+    const {theme} = useSelector((state)=> state.theme)
     const [showPassword, setShowPassword] = useState("")
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -28,8 +29,8 @@ function UpdatePassword() {
     }
 
     return (
-        <div className='flex justify-center items-center max-h-screen  bg-slate-200 sm:mt-5'>
-            <div className='w-full max-w-md  bg-white p-8 space-y-4  rounded-lg shadow-md sm:w-2/6'>
+        <div className={`flex justify-center items-center max-h-screen  ${theme === 'dark' ? 'bg-gray-900 text-white':'bg-slate-100'} sm:mt-5`}>
+            <div className='w-full max-w-md  bg-white text-black p-8 space-y-4  rounded-lg shadow-md sm:w-2/6'>
                 <h2 className='text-2xl text-center font-bold text-gray-700 mb-6'>Change Your Password</h2>
 
                 <form className='space-y-4' onSubmit={handleSubmit(changePassword)} >

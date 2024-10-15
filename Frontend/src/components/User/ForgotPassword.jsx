@@ -24,7 +24,7 @@ function ForgotPassword() {
     }
 
   return (
-    <div className='mx-auto max-w-md bg-white shadow-md  rounded-lg p-4 mt-8 sm:mt-2'>
+    <div className='mx-auto max-w-md bg-white  text-black shadow-md  rounded-lg p-4 mt-8 sm:mt-2'>
       <div className='text-center'>
         <h2 className='font-medium text-xl'>Forgot Password</h2>
         <form onSubmit={handleSubmit(onsubmit)}>

@@ -2,9 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    @apply bg-slate-200
+.light{
+  background-color: var(--bg-light);
+  color: var(--text-color);
 }
+.dark{
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+body{
+    transition: background-color 0.5, color 0.5s;
+}
+
 
 .continar1{
     @apply flex justify-center items-center
@@ -18,4 +27,19 @@ body{
 }
 .red{
     @apply text-red-500
+}
+
+:root{
+  --bg-color: #e2e8f0;
+  --text-color: black
+}
+
+.light{
+    --bg-light: #e2e8f0;
+    --text-color: #1a202c;
+}
+
+.dark{
+    --bg-color: #1a202c;
+    --text-color: white;
 }

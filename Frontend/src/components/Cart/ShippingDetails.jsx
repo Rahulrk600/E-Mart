@@ -4,12 +4,13 @@ import { Input,Button } from '../../components/index.js'
 import { useForm } from 'react-hook-form'
 import { FaHome, FaCity,FaPhoneAlt} from 'react-icons/fa'
 import { MdPublic,MdPinDrop, MdOutlineTransferWithinAStation } from 'react-icons/md'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 import { saveShippingDetails } from '../../Store/Reducer/shippingInfoSlice.js'
 
 function ShippingDetails() {
   const { register, handleSubmit, formState: { errors } } = useForm()
+  const {theme} = useSelector((state)=> state.theme)
   const dispatch = useDispatch();
   const navigate = useNavigate()
   
@@ -23,7 +24,7 @@ function ShippingDetails() {
   return (
     <>
      <CheckoutSteps activeStep={1}/>
-    <div className='flex justify-center items-center max-h-screen  bg-slate-200 '>
+    <div className={`flex justify-center items-center max-h-screen ${theme === 'dark' ? 'bg-gray-900 text-white':'bg-slate-100'} text-black `}>
       <div className='w-full max-w-md h-fit bg-white p-4 space-y-2  rounded-lg shadow-md sm:w-2/6 '>
         <h2 className='text-xl sm:text-2xl text-center font-bold text-gray-700 mb-6'> Add Your Address</h2>
         <form className='space-y-2' onSubmit={handleSubmit(onSubmit)}>

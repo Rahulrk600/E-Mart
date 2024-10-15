@@ -16,6 +16,7 @@ function UpdateOrder() {
     const dispatch = useDispatch()
     const { order, loading, success, error } = useSelector((state) => state.order)
     const { user } = useSelector((state) => state.auth)
+    const { theme } = useSelector((state) => state.theme)
 
     console.log(order);
     
@@ -49,9 +50,9 @@ function UpdateOrder() {
       }
 
   return (
-    <div  className='w-full rounded-md min-h-[calc(100vh-70px)] bg-white shadow-md'>
+    <div  className='w-full rounded-md min-h-[calc(100vh-70px)] text-black shadow-md'>
       <div className='flex  items-center justify-center'>
-        <div className='bg-white w-1/2 min-h-[calc(100vh-70px)]'>
+        <div className=' w-1/2 min-h-[calc(100vh-70px)]'>
         <div className='  w-full  shadow-md rounded-md bg-slate-200 p-2 mt-12'>
             <h3 className='ml-10 font-medium'>Deliver to: </h3>
             <div className='flex mt-2 ml-10 gap-6 font-normal'>
@@ -116,14 +117,14 @@ function UpdateOrder() {
         
 
         </div>
-        <div className='bg-white w-5/12 min-h-[calc(100vh-70px)] border-l'>
+        <div className={` w-5/12 min-h-[calc(100vh-70px)]  border-l ${theme === 'dark' ? 'bg-gray-900 text-white':'bg-slate-100'}`}>
             <h2 className='text-center text-xl font-medium mt-8 p-2'>Process Order</h2>
              <form onSubmit={handleSubmit(onSubmit)}>
                <div className='flex flex-col justify-center items-center '>
                 <select 
                 id={order?._id}
                  {...register('status',{required: true})}
-                 className=' block w-32 h-8 rounded-md shadow-md'
+                 className=' block w-32 h-8 rounded-md shadow-md text-black'
                  >
                     <option value="" className=' hidden'>Select..</option>
                     {order?.orderStatus === "processing" && (

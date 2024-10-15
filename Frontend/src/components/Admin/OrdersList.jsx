@@ -67,7 +67,7 @@ function OrdersList() {
 
 
     return (
-        <div className='w-full bg-white shadow-md rounded-md min-h-[calc(100vh-70px)]'>
+        <div className='w-full  shadow-md rounded-md min-h-[calc(100vh-70px)]'>
             <h2 className='text-center font-bold p-4 text-xl border-b '>Orders List</h2>
             <div className='grid grid-cols-5 place-items-center border-b p-2  shadow-md  '>
 
@@ -93,7 +93,7 @@ function OrdersList() {
             </div>
             {
                 !loading && currentOrders?.map((order) => (
-                    <div className='grid grid-cols-5 place-items-center  p-2 space-y-2 bg-slate-50 hover:bg-lime-100 '
+                    <div className='grid grid-cols-5 place-items-center  p-2 space-y-2 hover:bg-lime-100 '
                         key={order._id}
                     >
 

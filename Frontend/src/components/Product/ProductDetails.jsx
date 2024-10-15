@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 
 function ProductDetails() {
     const { product, loading } = useSelector((state) => state.products)
+    const { theme } = useSelector((state) => state.theme)
     
     const options = {
         edit: false,
@@ -83,9 +84,8 @@ function ProductDetails() {
     }
 
     const handalAddToCart = () => {
-
-        dispatch(addToCart(item));
         if (item.stock > 0) {
+            dispatch(addToCart(item));
             toast.success("Item Add in Cart successfully")
         } else {
             toast.error("out of stock")
@@ -113,12 +113,12 @@ function ProductDetails() {
                                 <img src="" className='w-full h-full object-scale-down mix-blend-multiply ' />
                             </div>
                         ) : (
-                            <div className='h-[300px] w-[300] sm:h-96 sm:w-96 bg-white relative'>
+                            <div className={`h-[300px] w-[300] sm:h-96 sm:w-96 ${theme === 'dark' ? 'bg-gray-600 text-white':'bg-slate-100'} relative`}>
                                 <img onMouseMove={hendalZoomImage} onMouseLeave={handleLeaveImageZoom} src={isActiveImage} className='w-full h-full object-scale-down mix-blend-multiply' />
                                 {/** Product Zoom */}
                                 {
                                     zoomImage && (
-                                        <div className=' hidden sm:block absolute min-w-[500px] min-h-[400px] bg-white p-1 -right-[510px] top-0'>
+                                        <div className=' hidden sm:block absolute min-w-[500px] min-h-[400px] bg-white p-1 -right-[510px] top-0 z-50'>
                                             <div className='w-full h-full min-h-[400px] min-w-[400px] scale-100'
                                                 style={{
                                                     backgroundImage: `url(${isActiveImage})`,
@@ -141,7 +141,7 @@ function ProductDetails() {
                                     {
                                         imageIsLoading.map((el, index) => {
                                             return (
-                                                <div className='h-20 w-20 bg-white robgunded  animate-pulse' key={"image" + index}>
+                                                <div className='h-20 w-20  robgunded  animate-pulse' key={"image" + index}>
                                                 </div>
                                             )
                                         })
@@ -153,7 +153,7 @@ function ProductDetails() {
                                         {
                                             product?.images.map((imageurl) => {
                                                 return (
-                                                    <div className='h-20 w-20 bg-white rounded p-1' key={imageurl}>
+                                                    <div className={`h-20 w-20 ${theme === 'dark' ? 'bg-gray-600 text-white':'bg-slate-100'} rounded p-1`} key={imageurl}>
                                                         <img src={imageurl} className='w-full h-full object-scale-down mix-blend-multiply' onMouseEnter={() => handalMouseEnterEvent(imageurl)} onClick={() => handalMouseEnterEvent(imageurl)} />
                                                     </div>
                                                 )
@@ -194,7 +194,7 @@ function ProductDetails() {
                                 <ReactStars {...options} /> <span> ({product?.numOfReviews} Reviews)</span>
                             </div>
                             <p className='text-slate-600'>₹{product?.price}</p>
-                            <p className='text-green-500'>Stock - {product?.stock}</p>
+                            <p className='text-green-500'>Stock - ( {product?.stock} )</p>
                             <div className='flex items-center gap-3 my-2'>
                                 <button onClick={handalBayNow} className=' border-2 border-red-500 rounded px-3 py-1 min-w-[120px] font-medium -red-500 hover:bg-red-500 hover:text-white'>Buy</button>
                                 <button onClick={handalAddToCart} className=' border-2 border-red-500 rounded px-3 py-1 min-w-[120px] font-medium -red-500 hover:bg-red-500 hover:text-white'>Add to Cart</button>

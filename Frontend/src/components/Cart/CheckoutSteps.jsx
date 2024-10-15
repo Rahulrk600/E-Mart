@@ -14,10 +14,10 @@ function CheckoutSteps({activeStep}) {
         },
     ]
   return (
-    <div className='flex justify-between mx-auto max-w-2xl items-center p-4'>
+    <div className='flex justify-between mx-auto max-w-2xl items-center p-4 text-black'>
       {
         steps.map((step, index)=>(
-            <div key={index} className='flex-1 items-center'>
+            <div key={index} className='flex-auto items-center'>
                 <div 
                 className={` flex, items-center justify-center mx-auto w-6 h-6 rounded-full
                     ${activeStep === index + 1 ? 'text-blue-700' : ' bg-white text-gray-500'}`}

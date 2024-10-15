@@ -38,7 +38,7 @@ function OrderDetails() {
 
 
   return (
-    <div className='max-w-lg mx-auto p-6'>
+    <div className='max-w-lg mx-auto p-6 text-gray-500'>
       <h2 className='text-center font-bold'>Order Details</h2>
       <div className=' shadow rounded-md p-2 bg-white mt-1 border-b'>
         <h2 className='ml-4 text-sm '>{`Order-Id -  ${order?._id}`}</h2>

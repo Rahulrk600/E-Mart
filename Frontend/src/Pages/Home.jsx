@@ -32,8 +32,8 @@ function Home() {
         <Horizontal_card category={"mobile"} heading={"Best SmartPhone"} />
 
         <div className=' container mx-auto py-1'>
-          <h2 className='text-2xl font-semibold mb-4'>Featured Products</h2>
-          <div className='grid grid-cols-2 grid-rows-2 sm:grid-cols-5 gap-6'>
+          <h2 className=' text-xl sm:text-2xl font-semibold mb-4'>Featured Products</h2>
+          <div className='grid grid-cols-2 grid-rows-2 sm:grid-cols-5 gap-2 px-2 sm:gap-6'>
             {
               data?.products?.map(product => (
                 <Verticaly_card key={product._id} product={product} />

@@ -1,44 +1,49 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate,useLocation } from 'react-router-dom'
 import { Button, Input } from './index.js'
 import { useForm } from 'react-hook-form'
 import { MdOutlineEmail } from 'react-icons/md'
 import { FaLock, FaEyeSlash, FaEye } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUser } from '../Store/Reducer/UserReducers/authSlice.js'
+import { loginUser,clearError } from '../Store/Reducer/UserReducers/authSlice.js'
 import { toast } from 'react-toastify'
 
 function Login() {
   const { register, handleSubmit, formState:{errors} } = useForm()
   const [showPassword, setShowPassword] = useState("")
   const dispatch = useDispatch()
-  //const navigate = useNavigate()
+  const {error} = useSelector((state)=> state.auth)
+  const {theme} = useSelector((state)=> state.theme)
+  const navigate = useNavigate()
   //const location =useLocation()
 
  // const redirect = location.search ? location.search.split("=")[1] : "/";
-
   
+  useEffect(()=>{
+    if(error){
+     toast.error(error)
+     dispatch(clearError())
+    }
+  },[dispatch,error])
   
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   }
 
-  const loginuser = async (data) => {
-    try {
-       const res = await dispatch(loginUser(data))
+  const loginuser = (data) => {
+        dispatch(loginUser(data))
       .unwrap()
-      toast.success(res.message)  
-      if(res.success === true){
-        window.location.href='/'
-      }
-    } catch (err) {
-      toast.error(err)
-    }
+      toast.success("Login Successful")
+      navigate("/")  
+    //   if(res.success === true){
+    //     window.location.href='/'
+      
+    // }
   }
 
   return (
-    <div className='flex justify-center items-center max-h-screen  bg-slate-200 sm:mt-5'>
-      <div className='w-full max-w-md  bg-white p-8 space-y-4  rounded-lg shadow-md sm:w-2/6'>
+    <div className={`flex justify-center items-center max-h-screen  ${theme === 'dark' ? 'bg-gray-900 text-white':'bg-slate-100'} sm:mt-5`}>
+      <div className='w-full max-w-md  bg-white text-black p-8 space-y-4  rounded-lg shadow-md sm:w-2/6'>
         <h2 className='text-2xl text-center font-bold text-gray-700 mb-6'>Sign In to your account</h2>
 
         <form className='space-y-4' onSubmit={handleSubmit(loginuser)} >

@@ -24,7 +24,7 @@ function Cart() {
                         <h1 className='text-xl font-bold'>No Product In Your Cart</h1>
                     </div>
                     : (
-                        <div className=' container mx-auto w-full max-h-screen p-6'>
+                        <div className=' container mx-auto w-full text-black max-h-screen p-6'>
                             <div className='flex  justify-center flex-col sm:flex-row'>
                                 <div className='sm:w-[50%]'>
                                     {

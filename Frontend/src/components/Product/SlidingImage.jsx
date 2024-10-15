@@ -58,8 +58,8 @@ function SlidingImage() {
             <div className='bg-white h-48 sm:h-64 w-full relative'>
                 <div className=' absolute z-10 w-full h-full sm:flex items-center hidden'>
                    <div className=' flex justify-between w-full text-2xl'>
-                   <button onClick={prevImage} className='bg-white shadow-md rounded-full'><FaAngleLeft/></button>
-                   <button onClick={nextImage} className='bg-white shadow-md rounded-full'><FaAngleRight/></button>
+                   <button onClick={prevImage} className='bg-white text-black shadow-md rounded-full'><FaAngleLeft/></button>
+                   <button onClick={nextImage} className='bg-white text-black shadow-md rounded-full'><FaAngleRight/></button>
                    </div>
                 </div>
                 {/* for desktop*/

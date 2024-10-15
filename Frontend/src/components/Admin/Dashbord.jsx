@@ -12,7 +12,7 @@ function Dashbord() {
    const {products} = useSelector((state)=> state.products)
    const {orders} = useSelector((state)=> state.order)
 
-   console.log( products, orders)
+   //console.log( products, orders)
 
    useEffect(()=>{
       dispatch(getOrdersByAdmin())
@@ -21,7 +21,7 @@ function Dashbord() {
    },[dispatch])
 
   return (
-       <div className='p-6 bg-white flex-1 shadow-md min-h-[calc(100vh-70px)]'>
+       <div className='p-6  flex-1 shadow-md min-h-[calc(100vh-70px)]'>
          <div className='grid grid-cols-2 sm:grid-cols-4 gap-4 mt-2 cursor-pointer'>
             <Link to={'/admin/usersList'} className='bg-cyan-400 p-6 rounded-lg shadow-md'>
                <h2 className=' font-medium mb-4 text-center'>Users</h2>

@@ -1,19 +1,21 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Link, NavLink, useNavigate  } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { CiSearch, CiLogout } from 'react-icons/ci'
-import { FaRegCircleUser } from 'react-icons/fa6'
+import { FaRegCircleUser, FaMoon } from 'react-icons/fa6'
 import { FaShoppingCart, FaUser } from 'react-icons/fa'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { HiBriefcase } from 'react-icons/hi'
-import { MdFavorite, MdCategory, MdLanguage,MdLogin } from 'react-icons/md'
+import { MdFavorite, MdCategory, MdLanguage, MdLogin, MdSunny } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
-import { currentUser, logoutUser } from '../Store/Reducer/UserReducers/authSlice'
+import { logoutUser } from '../Store/Reducer/UserReducers/authSlice'
+import { toggleTheme } from '../Store/Reducer/themeSlice'
 import { toast } from 'react-toastify'
 
 const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const sidebarRef = useRef(null)
+    const { theme } = useSelector((state) => state.theme)
     const { cartItems } = useSelector((state) => state.cart)
     const { isAuthenticated, user, error } = useSelector((state) => state.auth)
     const [sidebar, setSidebar] = useState(false)
@@ -23,27 +25,27 @@ const Header = () => {
         setSidebar(!sidebar)
     }
 
-    const outSideClick = (e)=>{
-        if(sidebarRef.current && !sidebarRef.current.contains(e.target)){
-          setSidebar(false);
+    const outSideClick = (e) => {
+        if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+            setSidebar(false);
         }
-       } 
+    }
 
-    const handaleItemClick  =()=>{
+    const handaleItemClick = () => {
         setSidebar(false)
-    }  
-        
-      useEffect(()=>{
-        if(sidebar){
-         document.addEventListener('mousedown', outSideClick) 
-        }else{
-            document.removeEventListener('mousedown',outSideClick)
+    }
+
+    useEffect(() => {
+        if (sidebar) {
+            document.addEventListener('mousedown', outSideClick)
+        } else {
+            document.removeEventListener('mousedown', outSideClick)
         }
-         return ()=>{
-          document.removeEventListener('mousedown', outSideClick)
-         }
-      },[sidebar]);  
-    
+        return () => {
+            document.removeEventListener('mousedown', outSideClick)
+        }
+    }, [sidebar]);
+
 
     const handleLogout = () => {
         if (isAuthenticated) {
@@ -57,7 +59,7 @@ const Header = () => {
         if (error) {
             toast.error(error)
         }
-    }, [error])
+    }, [dispatch, error])
 
     const handleSearch = (e) => {
         e.preventDefault()
@@ -71,7 +73,7 @@ const Header = () => {
 
     return (
         <>
-            <header className=' sticky top-0 z-50 bg-white h-32 shadow-sm md:h-16 sm:shadow-md '>
+            <header className={`sticky top-0 z-50 ${theme === 'light' ? 'bg-white text-gray-800' : 'bg-gray-400 text-black'} h-32 shadow-sm md:h-16 sm:shadow-md `}>
                 <div className=' container mx-auto flex  flex-col justify-between items-center sm:flex-row'>
 
                     <div className='mr-36 my-1 sm:mx-8'>
@@ -89,8 +91,15 @@ const Header = () => {
                             onChange={handleSearch}
                         />
                     </div>
-
                     <div className=' flex justify-center items-center'>
+                        <button
+                            onClick={() => dispatch(toggleTheme())}
+                            className=' hidden sm:block p-2 rounded-full  cursor-pointer text-2xl mr-8 mt-0  '>
+                            {
+                                theme === 'light' ? (<MdSunny className='text-yellow-400' />) : (<FaMoon className='text-gray-700' />)
+                            }
+
+                        </button>
                         <div className=' group flex  justify-center items-center flex-col relative '>
                             <div className=' cursor-pointer text-2xl -mt-[185px] -mr-[8rem] sm:mt-0 sm:-mr-16 sm:text-3xl'>
                                 {user ? (
@@ -173,12 +182,12 @@ const Header = () => {
 
                     <ul className=' border-b border-gray-600 py-3' onClick={handaleItemClick}>
                         <li>
-                            <NavLink className='flex items-center gap-3 px-2 mb-2'>
+                            <NavLink to={'/orders'} className='flex items-center gap-3 px-2 mb-2'>
                                 <HiBriefcase className='w-4 h-4' /> My Orders
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className='flex items-center gap-3 px-2 mb-2'>
+                            <NavLink to={'/cart'} className='flex items-center gap-3 px-2 mb-2'>
                                 <FaShoppingCart className='w-4 h-4' /> My Cart
                             </NavLink>
                         </li>
@@ -188,7 +197,7 @@ const Header = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className='flex items-center gap-3 px-2 mb-2'>
+                            <NavLink to={'/profile'} className='flex items-center gap-3 px-2 mb-2'>
                                 <FaUser className='w-4 h-4' /> My Account
                             </NavLink>
                         </li>
@@ -199,21 +208,35 @@ const Header = () => {
                                 <p
                                     onClick={handleLogout}
                                     className='flex items-center gap-3 px-2 mb-2' >
-                                   <CiLogout/> Logout
+                                    <CiLogout /> Logout
                                 </p>
                             ) :
                                 (
                                     <NavLink
                                         to="/signin"
                                         className='flex items-center gap-3 px-2 mb-2'>
-                                            <MdLogin/>Login
+                                        <MdLogin />Login
                                     </NavLink>
                                 )
                         }
                     </div>
                     <p className='border-b border-gray-600 py-3 px-2 mb-2'>
-                      Help Center
+                        Help Center
                     </p>
+                    <div className='flex cursor-pointer' onClick={() => dispatch(toggleTheme())}>
+                        <p className=' p-2'>
+                            {
+                                theme === 'light' ? 'Light-Mode' : 'Dark-mode'
+                            }
+                        </p>
+                        <p
+                            className=' p-2 rounded-full  text-2xl mr-8 mt-0  '>
+                            {
+                                theme === 'light' ? (<MdSunny className='text-yellow-400' />) : (<FaMoon className='text-gray-700' />)
+                            }
+
+                        </p>
+                    </div>
                 </nav>
             </div>
         </>

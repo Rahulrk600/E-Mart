@@ -30,12 +30,12 @@ function ReviewLists() {
 
 
   return (
-    <div className='w-full rounded-md min-h-[calc(100vh-70px)] bg-white shadow-md'>
+    <div className='w-full rounded-md min-h-[calc(100vh-70px)]  shadow-md'>
       <h2 className='text-center p-4 text-xl font-medium border-b'>Review List</h2>
       <form onSubmit={handalSubmit}>
         <div className='text-center'>
           <Input
-            className='w-64 p-2 mb-2 mt-6 border border-black bg-slate-200'
+            className='w-72 p-2 mb-2 mt-6 border border-black bg-slate-200 text-black'
             placeholder="Product Id"
             value={productId}
             onChange={(e) => setProductId(e.target.value)}

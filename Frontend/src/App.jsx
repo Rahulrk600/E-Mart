@@ -23,11 +23,12 @@ function App() {
   const { isAuthenticated, accessToken, user } = useSelector((state) => state.auth)
 
   useEffect(() => {
-    store.dispatch(currentUser());
-  }, []);
 
-  if (!accessToken)
-    dispatch(refreshToken);
+    store.dispatch(currentUser());
+    
+      if (!accessToken)
+        dispatch(refreshToken);
+  }, [dispatch]);
 
   const router = createBrowserRouter(
     createRoutesFromElements(

@@ -10,6 +10,7 @@ function ProductList() {
 
     const dispatch = useDispatch();
     const { products, loading,error } = useSelector((state) => state.products);
+    const { theme } = useSelector((state) => state.theme);
     const [currentPage, setCurrentPage] = useState(1)
     const productsParPage = 10;
 
@@ -51,7 +52,7 @@ function ProductList() {
     };
 
     return (
-        <div className='w-full bg-white shadow-md rounded-md min-h-[calc(100vh-70px)]'>
+        <div className={`w-full ${theme === 'dark' ? 'bg-gray-600 text-white':'bg-slate-100'}shadow-md rounded-md min-h-[calc(100vh-70px)] text-black`}>
             <h2 className='text-center font-bold p-4 text-xl border-b '>Products List</h2>
             <div className='grid grid-cols-5 place-items-center border-b p-2  shadow-md  '>
 
@@ -77,7 +78,7 @@ function ProductList() {
             </div>
             {
                 !loading && currentProducts?.map((product) => (
-                    <div className='grid grid-cols-5 place-items-center  p-2 space-y-2 bg-slate-50 hover:bg-lime-100 '
+                    <div className={`grid grid-cols-5 place-items-center  p-2 space-y-2 ${theme === 'dark' ? 'bg-gray-600 text-white':'bg-slate-100'} hover:bg-lime-100 `}
                         key={product._id}
                     >
 

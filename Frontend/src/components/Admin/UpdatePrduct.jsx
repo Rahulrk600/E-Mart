@@ -58,7 +58,7 @@ function UpdatePrduct() {
     };
   
     return (
-      <div className='flex justify-center items-center max-h-screen  bg-slate-200 '>
+      <div className={`flex justify-center items-center max-h-screen text-black`}   >
         <div className='w-full max-w-md  bg-white p-4   rounded-lg shadow-md sm:w-2/4'>
           <h2 className='text-2xl text-center font-bold text-gray-700 mb-1'>Update Product </h2>
   

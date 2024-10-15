@@ -29,10 +29,10 @@ export const loginUser = createAsyncThunk(
       // console.log("user", credentials);
       const config = {withCredentials: true,}
       const response = await axios.post(`${localhost_api}/api/v1/users/login`, credentials, config)
-      //  console.log(response.data);
-      return response.data
+       // console.log(response.data.data);
+      return response.data.data
     } catch (error) {
-      return rejectWithValue(error.response.data.message)
+      return rejectWithValue(error.response.data)
 
 
     }
@@ -46,7 +46,7 @@ export const logoutUser = createAsyncThunk(
     try {
       const config = {withCredentials: true}
       const response = await axios.post(`${localhost_api}/api/v1/users/logout`,{},config)
-      console.log("res",response.data);
+      //console.log("res",response.data);
       
       return response.message
 
@@ -239,17 +239,17 @@ const authSlice = createSlice({
 
       // login
       .addCase(loginUser.pending, (state) => {
-        state.status = 'loading';
+        state.loading = true;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.loading = false;
         state.isAuthenticated = true;
-        state.accessToken = action.payload.data.accessToken
-        state.user = action.payload.data.user;
+        state.accessToken = action.payload
+        state.user = action.payload
       })
       .addCase(loginUser.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.payload.message || 'Login failed'
+        state.loading = false;
+        state.error = action.payload.error || 'Login failed'
       })
 
     //Logout

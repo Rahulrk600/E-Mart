@@ -9,6 +9,7 @@ function ConfirmOrder() {
   const shippingInfo = useSelector((state) => state.shipping)
   const {cartItems} = useSelector((state)=> state.cart)
   const {user} = useSelector((state)=> state.auth)
+  const {theme} = useSelector((state)=> state.theme)
   const navigate = useNavigate();
   
 
@@ -48,7 +49,7 @@ function ConfirmOrder() {
   return (
     <>
       <CheckoutSteps activeStep={2} />
-      <div className='flex flex-col sm:flex-row'>
+      <div className='flex flex-col sm:flex-row text-black '>
         <div>
           <div className='sm:ml-64 container mx-auto  w-full  shadow-md rounded-md bg-white p-2'>
             <h3 className='ml-10 font-medium'>Deliver to: </h3>

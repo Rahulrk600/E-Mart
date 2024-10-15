@@ -5,6 +5,7 @@ import reviewSlice from './Reducer/reviewSlice';
 import cartSlice from './Reducer/cartSlice';
 import shippingInfoSlice from './Reducer/shippingInfoSlice';
 import orderSlice from './Reducer/orderSlice';
+import themeSlice from './Reducer/themeSlice'
 
  const  store = configureStore({
     reducer:{
@@ -13,7 +14,8 @@ import orderSlice from './Reducer/orderSlice';
      review: reviewSlice,
      cart: cartSlice,
      shipping:shippingInfoSlice,
-     order: orderSlice
+     order: orderSlice,
+     theme: themeSlice
     }
  });
 

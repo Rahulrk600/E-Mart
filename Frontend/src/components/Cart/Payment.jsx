@@ -115,8 +115,7 @@ function Payment() {
               id: result.paymentIntent.id,
               status: result.paymentIntent.status,
             }
-            dispatch(createOrder(order))
-             navigate("/success");   
+            dispatch(createOrder(order))  
           }
           else {
             toast.error("There was an issue processing the payment");
@@ -134,16 +133,17 @@ function Payment() {
       toast.error(error)
     }
     if (success) {
+      dispatch(clearCart())
+      window.location.href ='/success'
       toast.success("your order is Successful")
-       dispatch(clearCart())
     }
-  }, [dispatch, error, toast,success,clearCart])
+  }, [dispatch, error, toast,success, clearCart])
 
 
   return (
     <div>
       <CheckoutSteps activeStep={3} />
-      <div className='max-w-md mx-auto p-4 bg-white rounded-lg shadow-md'>
+      <div className='max-w-md mx-auto p-4 bg-white text-black rounded-lg shadow-md'>
         <h2 className='text-sm text-gray-600 mb-2'>Payments</h2>
         <form onSubmit={submitHandler}>
           <div className=' space-y-3'>

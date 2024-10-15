@@ -5,19 +5,20 @@ import { useSelector } from 'react-redux'
 
 function Profile() {
   const { user, isAuthenticated } = useSelector((state) => state.auth)
+  const { theme } = useSelector((state) => state.theme)
 
   return (
-    <div className=' w-full max-h-screen bg-white font-serif p-8 '>
+    <div className={` w-full max-h-screen ${theme === 'dark' ? 'bg-gray-800 text-white':'bg-slate-100'} font-serif p-8 `}>
       <h1 className='text-2xl text-center'>My Profile</h1>
       <div className='flex items-center justify-center flex-col sm:flex-row sm:mt-8'>
         <div className='w-fit mb-20'>
           <div >
-            <img src={user?.avatar} alt={user?.fullName} className=' rounded-full text-white  w-20 h-20 mt-16 sm:w-40 sm:h-40' />
+            <img src={user?.avatar} alt={user?.fullName} className={` rounded-full ${theme === 'dark' ? 'bg-gray-600 text-white':'bg-slate-100'}  w-20 h-20 mt-16 sm:w-40 sm:h-40`} />
           </div>
           <Link className='text-blue-400 text-sm  hover:underline cursor-pointer sm:ml-10'>Update Profile</Link>
         </div>
 
-        <div className='bg-white shadow-md mt-4 p-2 w-fit sm:ml-60' >
+        <div className={`${theme === 'dark' ? 'bg-gray-800 text-white':'bg-slate-100'} shadow-md mt-4 p-2 w-fit sm:ml-60`} >
           <div className='flex gap-20'>
             <h4>Full-Name:-</h4>
             <p>{user?.fullName}</p>
