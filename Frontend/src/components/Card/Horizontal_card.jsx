@@ -70,9 +70,9 @@ function Horizontal_card({category,heading}) {
                                     />
                                 </div>
                                 <div className='p-4 text-center text-black'>
-                                    <h2 className=' font-medium text-base sm:text-lg text-ellipsis line-clamp-1'>{product?.name}</h2>
-                                    <p className='font-medium text-base  line-through'>₹{product?.price}</p>
-                                    <h2 className='font-medium text-base  text-green-600'>5% off</h2>
+                                    <h2 className=' font-medium text-base text-center sm:text-lg text-ellipsis line-clamp-1'>{product?.name}</h2>
+                                    <p className='font-medium text-base text-center line-through'>₹{product?.price}</p>
+                                    <h2 className='font-medium text-base text-center text-green-600'>5% off</h2>
                                     <p>₹{product?.price *95/100}</p>
                                 </div>
                             </div>

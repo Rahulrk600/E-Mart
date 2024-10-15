@@ -19,10 +19,10 @@ function CategoryProducts() {
   }, [dispatch])
 
   return (
-    <div className=' container mx-auto p-4'>
+    <div className=' container mx-auto sm:p-4'>
       <div className={` sm:w-3/4 mx-auto bg-gray-100  ${theme === 'dark' ? 'bg-gray-400':''} text-black rounded-lg shadow-md`}>
         <h2 className='text-xl font-medium mb-4 my-3 p-2 ml-6 border-b  '>{`All ${params?.categoryName}s`}</h2>
-        <div className='grid grid-cols-2 grid-rows-2 sm:grid-cols-4 gap-3 sm:mx-6'>
+        <div className='grid grid-cols-2 grid-rows-2 sm:grid-cols-4 gap-1 sm:mx-6'>
 
           {
             !loading && categoryProducts?.data?.map((product) => (

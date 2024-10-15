@@ -20,9 +20,9 @@ function SearchProductCard({ product }) {
       <div className='bg-white shadow-lg rounded-lg overflow-hidden group-hover:bg-gradient-to-br  group-hover:from-red-50 group-hover:via-purple-50 hover:to-yellow-50'>
         <img src={product?.images[0]} alt={product?.category} className='w-full h-36 object-scale-down hover: scale-100 transition-all' />
         <div className='p-2 mt-1 text-center text-black'>
-          <h3 className='text-lg sm:text-base font-medium '>{product?.name}</h3>
-          <p className='text-sm sm:text-base font-medium ml-12 sm:ml-14'>{<ReactStars {...options} />}</p>
-          <p className='text-sm sm:text-base font-medium '>₹{product?.price}</p>
+          <h3 className='text-lg sm:text-base text-center font-medium '>{product?.name}</h3>
+          <p className='text-sm sm:text-base text-center font-medium ml-10 sm:ml-14'>{<ReactStars {...options} />}</p>
+          <p className='text-sm sm:text-base text-center font-medium '>₹{product?.price}</p>
         </div>
 
       </div>

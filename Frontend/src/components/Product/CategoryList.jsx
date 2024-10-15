@@ -17,7 +17,7 @@ function CategoryList() {
        <>
        {
         loading ?(
-            <div className='container mx-auto p-4'>
+            <div className='container mx-auto sm:p-4'>
             <div className='flex items-center gap-4 justify-between overflow-scroll scrollbar-none'>
             <div className=' cursor-pointer animate-pulse '>
                             <Link  className=' w-10 h-10 sm:w-16 sm:h-16 rounded-full p-3 overflow-hidden bg-gray-300 flex items-center justify-center animate-pulse'>
@@ -43,7 +43,7 @@ function CategoryList() {
 
         </div>
         ):(
-            <div className='container mx-auto p-4'>
+            <div className='container mx-auto sm:p-4'>
             <div className='flex items-center gap-4 justify-between overflow-scroll scrollbar-none'>
             <div className=' cursor-pointer'>
                             <Link to={`/allProducts`} className=' w-10 h-10 sm:w-14 sm:h-14 rounded-full p-3 overflow-hidden bg-white flex items-center justify-center '>
