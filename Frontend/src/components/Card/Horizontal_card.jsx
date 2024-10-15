@@ -62,14 +62,14 @@ function Horizontal_card({category,heading}) {
                    ):(
                     !loading && categoryProducts?.data?.map((product, index) => {
                         return (
-                            <div className='w-full min-w-[210px] max-w-[210px]  h-28 sm:h-36 bg-white shadow rounded-lg sm:min-w-[250px] sm:max-w-[250px] flex mb-4' key={product?._id}>
+                            <div className='w-full min-w-[250px] max-w-[250px]  h-28 sm:h-36 bg-white shadow rounded-lg sm:min-w-[260px] sm:max-w-[260px] flex mb-4' key={product?._id}>
                                 <div className='bg-slate-200 h-full p-3 min-w-[120px] sm:min-w-[130px] rounded-md'>
                                     <img src={product?.images[0]}
                                         alt={product?.category}
                                         className=' object-scale-down h-full hover:scale-110 transition-all'
                                     />
                                 </div>
-                                <div className='p-4 text-center text-black'>
+                                <div className='sm:p-4 text-center text-black'>
                                     <h2 className=' font-medium text-base text-center sm:text-lg text-ellipsis line-clamp-1'>{product?.name}</h2>
                                     <p className='font-medium text-base text-center line-through'>₹{product?.price}</p>
                                     <h2 className='font-medium text-base text-center text-green-600'>5% off</h2>

@@ -101,7 +101,7 @@ function AllProducts() {
     }, [dispatch, price, ratings, category])
 
     return (
-        <div className={`min-h-screen ${theme === 'dark' ? 'bg-black text-white' : ''} w-full sm:p-4`}>
+        <div className={`min-h-screen ${theme === 'dark' ? 'bg-black text-white' : ''}  sm:p-4`}>
             <div className=' container mx-auto sm:px-4 flex flex-col sm:flex-row sm:gap-3'>
                 {/** Filter */}
                 <div className='flex justify-between items-center p-3 text-black bg-gray-100 rounded-lg shadow-md sm:hidden'>
