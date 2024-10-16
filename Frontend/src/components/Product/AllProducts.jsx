@@ -115,7 +115,7 @@ function AllProducts() {
                         <p className='ml-2 font-medium'>Filter</p>
                     </div>
                 </div>
-                { isOpen &&(
+                { product.length !== 0 &&(
                 <div className={`sm:hidden mt-2 ${theme === 'dark' ? 'bg-black text-white' : ''} rounded-r-lg shadow-md`}>
                     <div className='grid grid-cols-2 grid-rows-2 gap-2 max-h-[calc(100vh-120px)]'>
 
@@ -128,7 +128,7 @@ function AllProducts() {
                 </div>
                 )}
                {
-                isOpen &&(
+                categoryProduct.length !== 0 &&(
                     <div className={`sm:hidden mt-2 ${theme === 'dark' ? 'bg-black text-white' : ''} rounded-r-lg shadow-md`}>
                     <div className='grid grid-cols-2 grid-rows-2 gap-2 max-h-[calc(100vh-120px)]'>
 
