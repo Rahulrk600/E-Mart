@@ -46,7 +46,7 @@ function CategoryList() {
                     <div className='container mx-auto p-4'>
                         <div className='flex items-center gap-4 justify-between overflow-scroll scrollbar-none'>
                             <div className=' cursor-pointer'>
-                                <Link to={`/allProducts`} className=' w-12 h-12 sm:w-14 sm:h-14 rounded-full p-3 overflow-hidden bg-white flex items-center justify-center '>
+                                <Link to={`/allProducts`} className=' w-14 h-14 sm:w-14 sm:h-14 rounded-full p-3 overflow-hidden bg-white flex items-center justify-center '>
                                     <FcApproval className='h-full w-full object-cover mix-blend-multiply hover:scale-125 transition-all ' />
                                 </Link>
                                 <p className='text-center text-sm sm:text-base capitalize'>{`All Products `}</p>
@@ -56,8 +56,8 @@ function CategoryList() {
                                 categories?.map((product, index) => {
                                     return (
                                         <Link to={`/category/products/${product?.category}`} className=' cursor-pointer' key={product._id}>
-                                            <div className=' w-12 h-12 sm:w-14 sm:h-14 rounded-full p-3 overflow-hidden bg-white flex items-center justify-center'>
-                                                <img src={product?.images[0]} alt={product?.category} className='h-full object-scale-down mix-blend-multiply hover:scale-125 transition-all ' />
+                                            <div className=' w-14 h-14 sm:w-14 sm:h-14 rounded-full p-3 overflow-hidden bg-white flex items-center justify-center'>
+                                                <img src={product?.images[0]} alt={product?.category} className='h-full object-cover mix-blend-multiply hover:scale-125 transition-all ' />
                                             </div>
                                             <p className='text-center text-sm sm:text-base capitalize'>{product?.category}</p>
                                         </Link>
