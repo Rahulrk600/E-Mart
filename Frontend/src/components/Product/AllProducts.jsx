@@ -115,7 +115,7 @@ function AllProducts() {
                         <p className='ml-2 font-medium'>Filter</p>
                     </div>
                 </div>
-                { product.length !== 0 &&(
+                { product.length !==0 &&(
                 <div className={`sm:hidden mt-2 ${theme === 'dark' ? 'bg-black text-white' : ''} rounded-r-lg shadow-md`}>
                     <div className='grid grid-cols-2 grid-rows-2 gap-2 max-h-[calc(100vh-120px)]'>
 
@@ -216,12 +216,12 @@ function AllProducts() {
                 </aside>
 
 
-                <div className={`sm:w-3/4 mt-2 sm:mt-0 ${theme === 'dark' ? 'bg-black text-white' : ''} rounded-r-lg shadow-md`}>
+                <div className={`${product.length === 0 ?"block" : "hidden"} ${categoryProduct.length === 0 ?"block" : "hidden"} sm:w-3/4 mt-2 sm:mt-0 ${theme === 'dark' ? 'bg-black text-white' : ''} rounded-r-lg shadow-md`}>
                     <h2 className='text-xl font-medium mb-4 my-3 p-2 sm:ml-6 border-b '>Products</h2>
                     <div className='grid grid-cols-2 grid-rows-2 sm:grid-cols-4 gap-2 sm:mx-6 max-h-[calc(100vh-120px)]'>
 
-                        {
-                            !loading && products?.map((product) => (
+                        {  
+                            !loading  && products?.map((product) => (
                                 <SearchProductCard key={product._id} product={product} />
                             ))
                         }
